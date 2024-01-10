@@ -4,9 +4,7 @@ import Create
  from "@/app/ui-components/home/create";
 export default function Home () {
     return (
-    <div>
-
-    
+    <>
     <div className="flex flex-col gap-3">
         {Array.from({ length: 5 }, (_, i) => (
         <div key={i}>
@@ -16,6 +14,6 @@ export default function Home () {
       
     </div>
     <Create />
-    </div>
+    </>
     );
 }
