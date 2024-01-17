@@ -1,5 +1,8 @@
+"use server";
 import { Redirect } from "next";
-import { redirect } from "next/dist/server/api-utils";
+import { redirect } from "next/navigation";
+
+
 
 export async function getPendingTasks(){
     const { Client } = require('pg');
@@ -115,3 +118,48 @@ export async function getProgressData(){
     }
 }
 
+export async function createTask( data : FormData){
+
+    "use server";
+    
+    const { Client } = require('pg');
+    require('dotenv').config();
+
+
+    const config = {
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT,
+        database: process.env.DB_DATABASE,
+    };
+
+    const client  = new Client(config);
+
+    const title = data.get('title')?.valueOf();
+
+    if (typeof title !== "string" || title.length === 0){
+        throw new Error("Invalid Title")
+    }
+
+    try {
+
+        await client.connect();
+
+        const query = {
+            text: 'INSERT INTO tasks(description, status) VALUES($1, $2)',
+            values: [title, 'pending'],
+          };
+    
+          await client.query(query);
+
+        await client.end();
+        
+        redirect("/dashboard/home");
+        
+    }catch (error) {
+        console.error('Error adding the task:', error);
+        throw error;
+    }
+
+}

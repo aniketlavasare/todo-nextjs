@@ -14,7 +14,7 @@ export default function Task({title, type} : {title : string, type: 'home' | 'hi
             <div className="ml-auto opacity-0 group-hover:opacity-100 ">
                 <IconUndo className={clsx(" h-0 w-0 text-white cursor-pointer",{ 'h-4 w-4': type === "history",},)} />
                 <IconComplete className={clsx(" hidden w-4 text-green-500 cursor-pointer",{ 'inline': type === "home",},)} />
-                <IconRemove className="  w-4 text-red-500 cursor-pointer" /></div>
+                <button type="button"><IconRemove className="  w-4 text-red-500 cursor-pointer" /></button></div>
         </div>
     );
 }
