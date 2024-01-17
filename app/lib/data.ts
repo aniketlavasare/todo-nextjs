@@ -121,7 +121,7 @@ export async function getProgressData(){
 export async function createTask( data : FormData){
 
     "use server";
-    
+
     const { Client } = require('pg');
     require('dotenv').config();
 
@@ -162,4 +162,38 @@ export async function createTask( data : FormData){
         throw error;
     }
 
+}
+
+export async function deleteTask(id : string) {
+
+    "use server";
+
+    const { Client } = require('pg');
+    require('dotenv').config();
+
+
+    const config = {
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT,
+        database: process.env.DB_DATABASE,
+    };
+
+    const client : typeof Client = new Client(config);
+    
+    try{
+        await client.connect();
+
+        await client.query(`
+        UPDATE tasks
+        SET status = 'pending'
+        WHERE id = ${id};
+        `);
+
+        await client.end()
+    }catch (error) {
+        console.error('Error Deleting:', error);
+        throw error;
+    }
 }

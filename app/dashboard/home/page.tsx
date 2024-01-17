@@ -14,7 +14,7 @@ export default async function Home () {
             // {console.log(task.description)}
             // {console.log(task.id)}
             <div key={task.id}>
-            <Task title={task.description} type="home"/>
+            <Task title={task.description} type="home" id={task.id}/>
           </div>
             )
         })}
