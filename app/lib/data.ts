@@ -57,7 +57,7 @@ export async function getCompletedTasks(){
 
         const result = await client.query(`
         SELECT * FROM tasks
-        WHERE status = 'completed';
+        WHERE status = 'completed' OR status = 'deleted';
         `)
 
         await client.end();
@@ -187,7 +187,7 @@ export async function deleteTask(id : string) {
 
         await client.query(`
         UPDATE tasks
-        SET status = 'pending'
+        SET status = 'deleted'
         WHERE id = ${id};
         `);
 
