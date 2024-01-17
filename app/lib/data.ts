@@ -1,4 +1,5 @@
-
+import { Redirect } from "next";
+import { redirect } from "next/dist/server/api-utils";
 
 export async function getPendingTasks(){
     const { Client } = require('pg');
@@ -113,3 +114,4 @@ export async function getProgressData(){
         throw error;
     }
 }
+

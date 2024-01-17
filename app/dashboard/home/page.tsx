@@ -1,7 +1,6 @@
 import Task from "@/app/ui-components/home/task";
 import { Circle } from "react-feather";
-import Create
- from "@/app/ui-components/home/create";
+import CreateButton from "@/app/ui-components/home/createButton";
 
  import { getPendingTasks} from "@/app/lib/data";
 
@@ -15,13 +14,13 @@ export default async function Home () {
             // {console.log(task.description)}
             // {console.log(task.id)}
             <div key={task.id}>
-            <Task title={task.description} type="nothing"/>
+            <Task title={task.description} type="home"/>
           </div>
             )
         })}
       
     </div>
-    <Create />
+    <CreateButton />
     </>
     );
 }
