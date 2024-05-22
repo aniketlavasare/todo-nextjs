@@ -9,3 +9,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </div>
     );
   }
+
+  //all components are from the ui-components folder
+  //dashboard layout, navbar at the top, with a window, that shows the current selected navbar option
