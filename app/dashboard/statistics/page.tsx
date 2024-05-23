@@ -11,8 +11,8 @@ export default async function Statistics () {
     return (
     <div className="flex flex-col gap-4">
     <div className="flex flex-row justify-around">
-       <ProgressCard title={"Tasks Completed"} value={completedCount} placeholder={"View All"}/>
-       <ProgressCard title={"Tasks Pending"} value={pendingCount} placeholder={"View All"}/>
+       <ProgressCard title={"Tasks Completed"} value={completedCount} placeholder={"View All"} />
+       <ProgressCard title={"Tasks Pending"} value={pendingCount} placeholder={"View All"} />
     </div>
     <div className="bg-zinc-300 rounded-md cursor-pointer flex flex-row justify-center text-black w-full h-12 text-lg"><button>Set Target</button></div>
     </div>

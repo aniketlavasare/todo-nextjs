@@ -118,7 +118,7 @@ export async function getProgressData(){
     }
 }
 
-export async function createTask( data : FormData){
+export async function createTask( data : string){
 
     "use server";
 
@@ -136,7 +136,7 @@ export async function createTask( data : FormData){
 
     const client  = new Client(config);
 
-    const title = data.get('title')?.valueOf();
+    const title = data;
 
     if (typeof title !== "string" || title.length === 0){
         throw new Error("Invalid Title")
@@ -155,7 +155,6 @@ export async function createTask( data : FormData){
 
         await client.end();
         
-        redirect("/dashboard/home");
         
     }catch (error) {
         console.error('Error adding the task:', error);

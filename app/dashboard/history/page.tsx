@@ -6,6 +6,7 @@ import Create
  import { getCompletedTasks} from "@/app/lib/data";
 
 export default async function History () {
+    //fetching all completed tasks --  look in lib/data.ts for more details
     const tasks = await getCompletedTasks();
     return (
     <>

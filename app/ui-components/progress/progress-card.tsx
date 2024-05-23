@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation";
+
 export default function ProgressCard({title, value, placeholder} : {title: string, value: number | string, placeholder: string}) {
     return(
         <div className="flex flex-col justify-center items-center h-auto border-2 rounded-md p-4">
