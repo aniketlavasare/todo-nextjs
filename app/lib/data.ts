@@ -1,6 +1,8 @@
 "use server";
 import { Redirect } from "next";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { unstable_noStore as noStore } from 'next/cache';
 
 
 
@@ -155,7 +157,8 @@ export async function createTask( data : FormData){
 
         await client.end();
         
-        redirect("/dashboard/home");
+        revalidatePath("/dashboard/home");
+        redirect('/dashboard/home')
         
     }catch (error) {
         console.error('Error adding the task:', error);
@@ -192,6 +195,9 @@ export async function deleteTask(id : string) {
         `);
 
         await client.end()
+        noStore();
+        revalidatePath('/dashboard/home');
+        
     }catch (error) {
         console.error('Error Deleting:', error);
         throw error;
